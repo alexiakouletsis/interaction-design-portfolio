@@ -61,6 +61,8 @@ export default function ProjectCarousel() {
   return (
     <div
       style={{
+        position: 'relative',
+        zIndex: 3,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -114,7 +116,7 @@ export default function ProjectCarousel() {
                     height: `${CARD_HEIGHT}px`,
                     borderRadius: '16px',
                     backgroundColor: CARD_COLOR,
-                    boxShadow: '0 25px 45px rgba(0, 0, 0, 0.25), 0 8px 15px rgba(0, 0, 0, 0.15)',
+                    boxShadow: '0 35px 60px rgba(0, 0, 0, 0.35), 0 12px 20px rgba(0, 0, 0, 0.2)',
                   }}
                 />
                 <span

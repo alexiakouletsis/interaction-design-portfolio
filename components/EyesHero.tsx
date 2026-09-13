@@ -16,17 +16,28 @@ const EASE = 0.03; // 0-1, lower = smoother/laggier, higher = snappier/twitchier
 const OVERLAY_INSET_X = '0vw'; // left/right space between the darken filter + grain and the screen edge
 const OVERLAY_INSET_Y = '3vw'; // top/bottom space between the darken filter + grain and the screen edge
 const NUM_DRIPS = 260; // how many separate drip columns
-const MAX_DRIP_LENGTH_VH = 55; // how far the drips can stretch down, in vh, once fully scrolled
+const MAX_DRIP_LENGTH_VH = 78; // how far drips grow as you scroll, in vh
+const FADE_START_PERCENT = 40; // where the fade begins, as % of the drip's current height
+const SCROLL_EASE = 0.28; // 0-1, lower = smoother/laggier growth as you scroll
+const CHUNK_SIZE = 40; // how many neighboring drips share the same length
+const CHUNK_LENGTH_VARIATION = 0.15; // 0-1, how much a chunk's length can vary from the max
 
 function DripDivider({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement | null> }) {
   const dripRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const offsetsRef = useRef<number[]>([]);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rafRef = useRef<number | null>(null);
+  const smoothedProgressRef = useRef(0);
+  const chunkMultipliersRef = useRef<number[]>([]);
 
   useEffect(() => {
-    // random per-drip length multiplier so they don't all grow in perfect unison
-    offsetsRef.current = Array.from({ length: NUM_DRIPS }, () => 0.6 + Math.random() * 0.6);
+    // random "control points" spaced along the row; each drip's multiplier is
+    // smoothly interpolated between its two nearest control points, so the
+    // height contour flows rather than stepping abruptly at chunk edges
+    const numControlPoints = Math.ceil(NUM_DRIPS / CHUNK_SIZE) + 1;
+    chunkMultipliersRef.current = Array.from(
+      { length: numControlPoints },
+      () => 1 - CHUNK_LENGTH_VARIATION + Math.random() * CHUNK_LENGTH_VARIATION * 2
+    );
 
     // tiny offscreen canvas: drawing the video's bottom strip scaled down to
     // NUM_DRIPS x 1 pixels gets us one averaged color per drip column, cheaply
@@ -68,12 +79,25 @@ function DripDivider({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement 
         }
       }
 
-      const progress = Math.min(Math.max(window.scrollY / window.innerHeight, 0), 1);
+      // height grows with scroll (smoothed so it doesn't jump), same for every
+      // drip. the fade itself is a static percentage-based mask set once in
+      // JSX below, which stays anchored to the bottom of whatever height this
+      // currently is — no per-frame math needed for the fade.
+      const targetProgress = Math.min(Math.max(window.scrollY / window.innerHeight, 0), 1);
+      smoothedProgressRef.current += (targetProgress - smoothedProgressRef.current) * SCROLL_EASE;
+      const baseLength = smoothedProgressRef.current * MAX_DRIP_LENGTH_VH;
       for (let i = 0; i < NUM_DRIPS; i++) {
         const el = dripRefs.current[i];
         if (el) {
-          const length = progress * MAX_DRIP_LENGTH_VH * offsetsRef.current[i];
-          el.style.height = `${length}vh`;
+          const position = i / CHUNK_SIZE;
+          const pointIndex = Math.floor(position);
+          const t = position - pointIndex; // 0-1 progress between the two control points
+          const smoothT = t * t * (3 - 2 * t); // smoothstep, avoids kinks at each control point
+          const points = chunkMultipliersRef.current;
+          const a = points[pointIndex] ?? 1;
+          const b = points[pointIndex + 1] ?? a;
+          const multiplier = a + (b - a) * smoothT;
+          el.style.height = `${baseLength * multiplier}vh`;
         }
       }
 
@@ -109,7 +133,8 @@ function DripDivider({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement 
             flex: 1,
             height: 0,
             backgroundColor: '#d9b99b',
-            boxShadow: '2px 4px 6px rgba(0, 0, 0, 0.25)',
+            maskImage: `linear-gradient(to bottom, black 0%, black ${FADE_START_PERCENT}%, transparent 100%)`,
+            WebkitMaskImage: `linear-gradient(to bottom, black 0%, black ${FADE_START_PERCENT}%, transparent 100%)`,
           }}
         />
       ))}
@@ -122,6 +147,8 @@ export default function EyesHero() {
   const targetTimeRef = useRef(0);
   const durationRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const isHeroVisibleRef = useRef(true);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -138,6 +165,9 @@ export default function EyesHero() {
     }
 
     const computeTarget = (clientY: number) => {
+      // ignore mouse/touch position once the hero has scrolled out of view —
+      // the eyes just hold wherever they last were instead of continuing to react
+      if (!isHeroVisibleRef.current) return;
       const normalized = Math.min(Math.max(clientY / window.innerHeight, 0), 1);
       const y = FLIP_DIRECTION ? normalized : 1 - normalized;
       targetTimeRef.current = y * durationRef.current;
@@ -161,6 +191,17 @@ export default function EyesHero() {
       rafRef.current = requestAnimationFrame(tick);
     };
 
+    let observer: IntersectionObserver | null = null;
+    if (sectionRef.current) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          isHeroVisibleRef.current = entry.isIntersecting;
+        },
+        { threshold: 0 }
+      );
+      observer.observe(sectionRef.current);
+    }
+
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
     window.addEventListener('mousemove', handleMouseMove);
     window.addEventListener('touchmove', handleTouchMove);
@@ -171,12 +212,14 @@ export default function EyesHero() {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('touchmove', handleTouchMove);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (observer) observer.disconnect();
     };
   }, []);
 
   return (
     <div style={{ position: 'relative' }}>
       <section
+        ref={sectionRef}
         style={{
           position: 'relative',
           width: '100vw',
