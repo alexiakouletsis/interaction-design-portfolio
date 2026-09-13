@@ -16,14 +16,14 @@ export default function Home() {
             minHeight: '150vh',
             backgroundColor: '#eef6fb',
             backgroundImage: 'url("/after-hero-bg.png"), url("/bg.png")',
-            backgroundRepeat: 'no-repeat, repeat',
-            backgroundPosition: 'top center, top left',
-            backgroundSize: '100% auto, auto',
+            backgroundRepeat: 'no-repeat, repeat-y',
+            backgroundPosition: 'top center, top center',
+            backgroundSize: '100% auto, 100% auto',
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            paddingTop: '70vh',
-            paddingBottom: '8vh',
+            paddingTop: '76vh',
+            paddingBottom: '10vh',
           }}
         >
           <ProjectCarousel />
