@@ -15,7 +15,7 @@ export default function Home() {
             marginRight: 'calc(50% - 50vw)',
             minHeight: '150vh',
             backgroundColor: '#eef6fb',
-            backgroundImage: 'url("/after-hero-bg.svg"), url("/bg.svg")',
+            backgroundImage: 'url("/after-hero-bg.png"), url("/bg.png")',
             backgroundRepeat: 'no-repeat, repeat',
             backgroundPosition: 'top center, top left',
             backgroundSize: '100% auto, auto',

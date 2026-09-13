@@ -250,26 +250,23 @@ export default function EyesHero() {
           style={{
             margin: 0,
             color: '#fff',
-            fontFamily: '"deseo-medium", sans-serif',
+            fontFamily: '"quiche-sans", sans-serif',
             fontSize: '10vw',
-            fontWeight: 400,
+            fontWeight: 100,
+            letterSpacing: '0.02em',
+            lineHeight: 1.05,
             textAlign: 'center',
             pointerEvents: 'none',
           }}
         >
-          <span style={{ fontFeatureSettings: "'ss05' 1" }}>I</span>
-          <span style={{ fontFeatureSettings: "'ss01' 1" }}>n</span>
-          ter
-          <span style={{ fontFeatureSettings: "'ss13' 1" }}>a</span>
-          ctive{' '}
-          <span style={{ fontFeatureSettings: "'ss13' 1" }}>D</span>
-          esig
-          <span style={{ fontFeatureSettings: "'fina' 1" }}>n</span>
+          INTERACTIVE
+          <br />
+          DESIGN
         </h1>
         <p
           style={{
             margin: 0,
-            marginTop: '-1.6vw',
+            marginTop: '1vw',
             color: '#fff',
             fontFamily: '"lato", sans-serif',
             fontWeight: 100,
