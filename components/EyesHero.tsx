@@ -302,7 +302,7 @@ export default function EyesHero() {
             pointerEvents: 'none',
           }}
         >
-          INTERACTIVE
+          INTERACTION
           <br />
           DESIGN
         </h1>
