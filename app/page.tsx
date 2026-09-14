@@ -22,7 +22,7 @@ export default function Home() {
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            paddingTop: '37vh',
+            paddingTop: '36vh',
             paddingBottom: '4.5vh',
           }}
         >
