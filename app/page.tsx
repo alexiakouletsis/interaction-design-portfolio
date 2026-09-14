@@ -22,8 +22,8 @@ export default function Home() {
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            paddingTop: '34vh',
-            paddingBottom: '4vh',
+            paddingTop: '37vh',
+            paddingBottom: '4.5vh',
           }}
         >
           <ProjectCarousel />
