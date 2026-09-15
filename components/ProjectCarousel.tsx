@@ -62,6 +62,16 @@ export default function ProjectCarousel() {
   }, []);
 
   useEffect(() => {
+    // the query param + hash have already done their job by the time this
+    // runs — the browser scrolled to the anchor and we read the project
+    // index during initial render — so silently rewrite the address bar
+    // back to a clean "/" without triggering any actual navigation/scroll
+    if (window.location.search || window.location.hash) {
+      window.history.replaceState(null, '', '/');
+    }
+  }, []);
+
+  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') goPrev();
       if (e.key === 'ArrowRight') goNext();
