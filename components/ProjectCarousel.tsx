@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 const PROJECTS = [
-  { label: 'Project 0', href: '/projects/project-0' },
+  { label: 'Project 0', href: '/projects/project-0', image: '/ambition.jpg' },
   { label: 'Project 1', href: '/projects/project-1' },
   { label: 'Project 2', href: '/projects/project-2' },
 ];
@@ -13,6 +13,12 @@ const CARD_HEIGHT = 580; // px
 const RADIUS = 620; // px, how far cards sit from the center of rotation
 const CARD_COLOR = '#7c93a6';
 const LABEL_COLOR = '#344055';
+const HOVER_SCALE = 1.03;
+// transform: scale() doesn't affect layout, so the label won't naturally move
+// just because the card visually grows — this is how far the card's bottom
+// edge extends past its own box at HOVER_SCALE, used to nudge the label down
+// by a matching amount instead of scaling the label itself
+const LABEL_PUSH = (CARD_HEIGHT * (HOVER_SCALE - 1)) / 2;
 
 function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
   return (
@@ -36,6 +42,7 @@ function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
 
 export default function ProjectCarousel() {
   const [step, setStep] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const count = PROJECTS.length;
   const angleStep = 360 / count;
   // wrap the raw step count into a valid project index for highlighting/links
@@ -92,9 +99,12 @@ export default function ProjectCarousel() {
         >
           {PROJECTS.map((project, i) => {
             const isActive = i === activeIndex;
+            const isHovered = isActive && hoveredIndex === i;
             return (
               <div
                 key={project.label}
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 style={{
                   position: 'absolute',
                   top: '50%',
@@ -116,7 +126,12 @@ export default function ProjectCarousel() {
                     height: `${CARD_HEIGHT}px`,
                     borderRadius: '16px',
                     backgroundColor: CARD_COLOR,
+                    backgroundImage: project.image ? `url("${project.image}")` : undefined,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
                     boxShadow: '0 35px 60px rgba(0, 0, 0, 0.35), 0 12px 20px rgba(0, 0, 0, 0.2)',
+                    transform: isHovered ? `scale(${HOVER_SCALE})` : 'scale(1)',
+                    transition: 'transform 0.3s ease',
                   }}
                 />
                 <span
@@ -126,6 +141,8 @@ export default function ProjectCarousel() {
                     fontWeight: 400,
                     fontSize: '1.1rem',
                     color: LABEL_COLOR,
+                    transform: isHovered ? `translateY(${LABEL_PUSH}px)` : 'translateY(0px)',
+                    transition: 'transform 0.3s ease',
                   }}
                 >
                   {project.label}
