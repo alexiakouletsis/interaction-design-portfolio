@@ -44,7 +44,7 @@ export default function ProjectPlaceholder() {
             margin: 0,
           }}
         >
-          Check back soon — this project is still in progress.
+          Check back soon :)
         </p>
       </div>
 
