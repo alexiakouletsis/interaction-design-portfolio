@@ -316,7 +316,7 @@ export default function EyesHero() {
             marginTop: '1vw',
             color: '#fff',
             fontFamily: '"lato", sans-serif',
-            fontWeight: 100,
+            fontWeight: 200,
             fontStyle: 'italic',
             fontSize: '0.85vw',
             textAlign: 'center',
