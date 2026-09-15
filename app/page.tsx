@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import EyesHero from '@/components/EyesHero';
 import ProjectCarousel from '@/components/ProjectCarousel';
 import SiteGate from '@/components/SiteGate';
@@ -22,11 +23,15 @@ export default function Home() {
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            paddingTop: '36vh',
-            paddingBottom: '4.5vh',
+            paddingTop: '34vh',
+            paddingBottom: '4vh',
           }}
         >
-          <ProjectCarousel />
+          <div id="carousel-anchor">
+            <Suspense fallback={null}>
+              <ProjectCarousel />
+            </Suspense>
+          </div>
         </div>
       </main>
     </SiteGate>

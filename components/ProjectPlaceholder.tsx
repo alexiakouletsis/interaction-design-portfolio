@@ -2,7 +2,7 @@ import BackHomeLink from '@/components/BackHomeLink';
 
 const TEXT_COLOR = '#314057';
 
-export default function ProjectPlaceholder() {
+export default function ProjectPlaceholder({ projectIndex }: { projectIndex: number }) {
   return (
     <main
       style={{
@@ -48,7 +48,7 @@ export default function ProjectPlaceholder() {
         </p>
       </div>
 
-      <BackHomeLink color={TEXT_COLOR} />
+      <BackHomeLink color={TEXT_COLOR} returnToProject={projectIndex} />
     </main>
   );
 }

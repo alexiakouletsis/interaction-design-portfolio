@@ -3,12 +3,22 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
-export default function BackHomeLink({ color }: { color: string }) {
+export default function BackHomeLink({
+  color,
+  returnToProject,
+}: {
+  color: string;
+  returnToProject?: number;
+}) {
   const [hovered, setHovered] = useState(false);
+  const href =
+    returnToProject !== undefined
+      ? `/?project=${returnToProject}#carousel-anchor`
+      : '/#carousel-anchor';
 
   return (
     <Link
-      href="/"
+      href={href}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{

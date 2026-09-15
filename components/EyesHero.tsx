@@ -50,7 +50,11 @@ function DripDivider({ videoRef }: { videoRef: React.RefObject<HTMLVideoElement 
     const tick = () => {
       const video = videoRef.current;
 
-      if (video && video.videoWidth > 0 && ctx) {
+      // readyState >= 2 (HAVE_CURRENT_DATA) means an actual decoded frame
+      // exists to sample — videoWidth alone only means metadata has loaded,
+      // which can be true slightly before any real pixel data is ready,
+      // and drawing too early samples a blank/black frame
+      if (video && video.videoWidth > 0 && video.readyState >= 2 && ctx) {
         try {
           const stripHeight = Math.max(4, video.videoHeight * 0.05);
           ctx.drawImage(
@@ -302,7 +306,7 @@ export default function EyesHero() {
             pointerEvents: 'none',
           }}
         >
-          INTERACTION
+          INTERACTIVE
           <br />
           DESIGN
         </h1>
@@ -312,7 +316,7 @@ export default function EyesHero() {
             marginTop: '1vw',
             color: '#fff',
             fontFamily: '"lato", sans-serif',
-            fontWeight: 200,
+            fontWeight: 100,
             fontStyle: 'italic',
             fontSize: '0.85vw',
             textAlign: 'center',

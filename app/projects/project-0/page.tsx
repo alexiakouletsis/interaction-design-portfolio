@@ -108,7 +108,7 @@ export default function Project0() {
 
         <FadeSection>
           <div style={{ textAlign: 'center' }}>
-            <BackHomeLink color={TEXT_COLOR} />
+            <BackHomeLink color={TEXT_COLOR} returnToProject={0} />
           </div>
         </FadeSection>
       </div>

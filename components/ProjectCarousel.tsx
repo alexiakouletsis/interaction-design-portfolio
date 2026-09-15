@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 const PROJECTS = [
   { label: 'Project 0', href: '/projects/project-0', image: '/ambition.jpg' },
@@ -41,7 +42,11 @@ function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
 }
 
 export default function ProjectCarousel() {
-  const [step, setStep] = useState(0);
+  const searchParams = useSearchParams();
+  const initialProject = Number(searchParams.get('project'));
+  const [step, setStep] = useState(
+    Number.isInteger(initialProject) && initialProject >= 0 ? initialProject : 0
+  );
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const count = PROJECTS.length;
   const angleStep = 360 / count;
