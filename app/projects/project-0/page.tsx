@@ -2,8 +2,7 @@ import FadeSection from '@/components/FadeSection';
 import WorkImage from '@/components/WorkImage';
 import WorkPDF from '@/components/WorkPDF';
 import BackHomeLink from '@/components/BackHomeLink';
-
-const TEXT_COLOR = '#314057';
+import SectionHeader, { TEXT_COLOR } from '@/components/SectionHeader';
 
 const REFLECTION_PARAGRAPHS = [
   `Completing Project 0 pushed me to think about dimension as something broader than the standard categories of words, images, objects, time, and behavior. It also made me realize how differently I define a dimension compared to how it's typically used in interaction design, where it's treated more like a variable than a lens.`,
@@ -19,24 +18,6 @@ const DIMENSIONS = [
   { label: 'Ambition', image: '/ambition.jpg' },
   { label: 'Love', image: '/love.jpg' },
 ];
-
-function SectionHeader({ children }: { children: React.ReactNode }) {
-  return (
-    <h2
-      style={{
-        fontFamily: '"lato", sans-serif',
-        fontWeight: 400,
-        fontSize: '1.8rem',
-        color: TEXT_COLOR,
-        margin: 0,
-        marginBottom: '1.5rem',
-        textAlign: 'center',
-      }}
-    >
-      {children}
-    </h2>
-  );
-}
 
 export default function Project0() {
   return (

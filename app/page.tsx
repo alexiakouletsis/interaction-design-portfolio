@@ -2,10 +2,12 @@ import { Suspense } from 'react';
 import EyesHero from '@/components/EyesHero';
 import ProjectCarousel from '@/components/ProjectCarousel';
 import SiteGate from '@/components/SiteGate';
+import LoadingScreen from '@/components/LoadingScreen';
 
 export default function Home() {
   return (
     <SiteGate>
+      <LoadingScreen />
       <main>
         <EyesHero />
         <div

@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 
 const PROJECTS = [
   { label: 'Project 0', href: '/projects/project-0', image: '/ambition.jpg' },
-  { label: 'Project 1', href: '/projects/project-1' },
+  { label: 'Project 1', href: '/projects/project-1', image: '/owalas-sidebyside.png' },
   { label: 'Project 2', href: '/projects/project-2' },
 ];
 

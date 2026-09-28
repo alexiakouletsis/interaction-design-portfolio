@@ -29,9 +29,9 @@ export default function FadeSection({ children }: { children: React.ReactNode })
         const referenceHeight = Math.max(1, Math.min(rect.height, viewportHeight));
         const progress = Math.min(Math.max(visibleHeight / referenceHeight, 0), 1);
 
-        const opacity = 0.1 + progress * 0.9;
-        const lift = (1 - progress) * 50; // px — the "float" distance
-        const scale = 0.97 + progress * 0.03;
+        const opacity = 0.225 + progress * 0.775;
+        const lift = (1 - progress) * 39; // px — the "float" distance
+        const scale = 0.9775 + progress * 0.0225;
 
         setStyle({
           opacity,

@@ -3,7 +3,17 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
 
-export default function WorkImage({ src, alt }: { src: string; alt: string }) {
+export default function WorkImage({
+  src,
+  alt,
+  maxWidth = '800px',
+  maxHeight = '85vh',
+}: {
+  src: string;
+  alt: string;
+  maxWidth?: string;
+  maxHeight?: string;
+}) {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -19,8 +29,8 @@ export default function WorkImage({ src, alt }: { src: string; alt: string }) {
           display: 'block',
           width: 'auto',
           height: 'auto',
-          maxWidth: '800px',
-          maxHeight: '85vh',
+          maxWidth,
+          maxHeight,
           margin: '0 auto',
           borderRadius: '16px',
           boxShadow: '0 25px 45px rgba(0, 0, 0, 0.18), 0 8px 15px rgba(0, 0, 0, 0.1)',
