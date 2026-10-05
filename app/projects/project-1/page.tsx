@@ -35,10 +35,12 @@ const SKETCH_IMAGES = [
 ];
 
 const PROPOSAL_PARAGRAPHS = [
-  `I am redesigning the Owala water bottle for people who want to track their body's needs without adding another screen to check. My audience includes people like my grandpa, who forgets to drink water on his own, and people like myself, who carry a bottle everywhere but have no way of knowing what their body needs beyond water.`,
-  `The bottle keeps its stainless-steel cylinder, button-controlled lid, and collapsible handle from the original, but adds a hand-like indent where the user rests their palm (see Sketch 1). This indent holds sensors that read iron, vitamin, hydration, and possibly hormone levels on contact. The bottom screws off to reveal a replaceable nutrient disk, labeled by supplement type, that infuses the water based on the sensor readings (see Sketch 3). It also comes with a ring, inspired by the Oura Ring, which reads pulse and blood levels throughout the day instead of only when the user touches the bottle (see Sketch 2; Reference Image 1). Smart rings like the Oura Ring are already validated in peer-reviewed studies for accurately tracking heart rate and blood oxygen (Oura, n.d.).`,
-  `The message of this object is that hydration and nutrition should respond to what the body needs in the moment, not something the user has to calculate on their own. This matters for older adults, who face higher dehydration risk from reduced thirst perception and benefit from continuous, non-invasive monitoring (Star et al., 2025). In terms of where it lives, this object is meant to sit in a school bag, at a bedside, at the gym, or in a kitchen, mirroring the original Owala's daily presence.`,
-  `Usability is where I ran into the most conflict. An app would organize the sensor data more clearly (see Sketch 4), but research shows apps with small text and multi-step navigation are difficult for older adults to use consistently (Amouzadeh et al., 2025). Since my grandpa is part of my audience, I'm leaning toward a simplified screen built into the bottle itself, so the ring stays optional. To prototype this, I'll build the bottle body out of cardboard, use Model Magic clay for the hand indent, button, and nutrient disk, and paper for smaller details like labels. For the rounded top, I'm considering paper mache over a cardboard armature, though I haven't tried it before, so I'd test it on a scrap piece first.`,
+  `I am redesigning the Owala water bottle to embed reason and love into health and hydration. My audience includes people like my grandpa, who forgets to drink water on his own, and people like myself, who carry a bottle everywhere but rarely think about why it matters.`,
+  `The bottle keeps its stainless-steel cylinder, button-controlled lid, and collapsible handle, but adds a hand-like indent where the user rests their palm (see Sketch 1). This indent holds sensors that read hydration, vitamin, and iron levels on contact. When a reading is low, the bottle projects a memory onto the screen built into its side (see Sketch 4), tied to someone the user is staying healthy for, while the handle vibrates in a pattern matched to the emotion felt during that memory. The bottom screws off to reveal a replaceable nutrient disk that infuses water based on the readings (see Sketch 3).`,
+  `It also comes with a ring, inspired by the Oura Ring, which reads pulse and blood levels throughout the day instead of only on contact (see Sketch 2; Reference Image 1) and is already validated for tracking heart rate and blood oxygen (Oura, n.d.). The ring can trigger the same memory and vibration on its own, so the reminder reaches the user even out of sight of the bottle.`,
+  `The message is that staying hydrated and taking care of health means more than the present day. It can mean the chance to make new memories, and live long enough to relish in those stories. This matters especially for older adults, who face higher dehydration risk and benefit from personal reminders (Es Sebar et al., 2025).`,
+  `This object lives in a school bag, at a bedside, at the gym, or in a kitchen. Usability is where I ran into the most conflict. An app would organize data more clearly, but research shows apps are difficult for older adults to use consistently (Amouzadeh et al., 2025), so I kept the feedback on a screen built into the bottle. The vibration reads as a gentle pulse rather than a buzz, so it makes the user feel the memory, not alarms them.`,
+  `To prototype this, I'll build the bottle out of cardboard, use Model Magic clay for the indent and disk, and paper for details. I'll test the projection with small photos behind the paper screen cutout, lit from behind to simulate the glow.`,
 ];
 
 const WORKS_CITED = [
@@ -50,7 +52,7 @@ const WORKS_CITED = [
 const ATTRIBUTES = [
   {
     label: 'Audience',
-    value: `People who forget to drink water on their own (elderly, people with ADHD, etc.) and people who carry a bottle everywhere but don't know what their body needs beyond water`,
+    value: `People who need an emotional reason to stay hydrated, like my grandpa, who forgets to drink water on his own, and people like myself who carry a bottle everywhere without thinking about why it matters`,
   },
   {
     label: 'Form',
@@ -58,31 +60,31 @@ const ATTRIBUTES = [
   },
   {
     label: 'Material',
-    value: `Stainless steel body with sensor-embedded palm indent and a replaceable nutrient disk`,
+    value: `Stainless steel body with sensor-embedded palm indent, a built-in screen, and a replaceable nutrient disk`,
   },
   {
     label: 'Appeal',
-    value: `Gives real-time feedback on the body's needs without requiring the user to calculate anything themselves`,
+    value: `Makes the user feel a memory tied to someone they're staying healthy for, rather than just showing a number`,
   },
   {
     label: 'Purpose',
-    value: `Reads iron, vitamin, hydration, and hormone levels on contact, then infuses the water with the supplement the sensors indicate`,
+    value: `Reads hydration, vitamin, and iron levels on contact, then projects a memory and vibrates with its emotion while infusing the water with the needed supplement`,
   },
   {
     label: 'Message',
-    value: `Hydration and nutrition should respond to what the body needs in the moment, not something the user tracks manually — the best healthcare is proactive.`,
+    value: `Staying hydrated means more than the present day, it means having the chance to make new memories and live long enough to relish them`,
   },
   {
     label: 'Location',
-    value: `School bag, bedside, gym, or kitchen, mirroring the original Owala's daily presence`,
+    value: `School bag, bedside, gym, or kitchen`,
   },
   {
     label: 'Usability',
-    value: `Simplified screen built into the bottle instead of an app, so the paired ring stays optional and it's accessible without a phone`,
+    value: `A screen built into the bottle instead of an app, so feedback stays accessible without a phone, with a gentle vibration pulse instead of an alarming buzz`,
   },
   {
     label: 'Technique',
-    value: `Cardboard for the main structure, Model Magic clay for the indent/button/disk, and paper mache over an armature for the rounded top`,
+    value: `Cardboard for the main structure, Model Magic clay for the indent and disk, paper for details, with small lit photos behind a paper cutout to simulate the memory projection`,
   },
 ];
 
