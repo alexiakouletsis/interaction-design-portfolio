@@ -3,6 +3,7 @@ import WorkImage from '@/components/WorkImage';
 import ImageGrid from '@/components/ImageGrid';
 import BackHomeLink from '@/components/BackHomeLink';
 import SectionHeader, { TEXT_COLOR } from '@/components/SectionHeader';
+import StoryboardCarousel from '@/components/StoryboardCarousel';
 
 const OBJECTS = [
   {
@@ -345,6 +346,14 @@ export default function Project1() {
                 />
               ))}
             </ImageGrid>
+          </section>
+        </FadeSection>
+
+        {/* STORYBOARD */}
+        <FadeSection>
+          <section style={{ marginBottom: '7rem' }}>
+            <SectionHeader>Storyboard</SectionHeader>
+            <StoryboardCarousel />
           </section>
         </FadeSection>
 
