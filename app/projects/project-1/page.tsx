@@ -98,6 +98,11 @@ const PROTOTYPE_IMAGES = [
   '/owalas-sidebyside.png',
 ];
 
+const CONCEPT_STATEMENT_PARAGRAPHS = [
+  `The Owala water bottle I carry every day already means more to me than its function suggests, since I associate it with my own habits and the people I think about when I use it. But none of that meaning is built into the object itself. It is something I bring to the bottle, not something the bottle gives back.`,
+  `I am designing this specifically with my grandpa in mind. He forgets to drink water on his own, and there are days I wish I could just buzz him until he picked up a glass. For my redesign, I wanted to build that insistence into the object itself instead of leaving it to the user. The redesigned bottle reads the body's needs through sensors in the finger indents, and when levels run low, it projects a memory tied to someone the user is staying healthy for, matched with a vibration tuned to the emotion of that memory. The paired ring buzzes throughout the day as a reminder to drink water, and each buzz carries the same message, that the user is staying hydrated for someone else as much as for themselves.`,
+];
+
 function BodyText({ children, italic = false }: { children: React.ReactNode; italic?: boolean }) {
   return (
     <p
@@ -354,6 +359,16 @@ export default function Project1() {
           <section style={{ marginBottom: '7rem' }}>
             <SectionHeader>Storyboard</SectionHeader>
             <StoryboardCarousel />
+          </section>
+        </FadeSection>
+
+        {/* CONCEPT STATEMENT */}
+        <FadeSection>
+          <section style={{ maxWidth: '700px', margin: '0 auto 7rem' }}>
+            <SectionHeader>Concept Statement</SectionHeader>
+            {CONCEPT_STATEMENT_PARAGRAPHS.map((paragraph, i) => (
+              <BodyText key={i}>{paragraph}</BodyText>
+            ))}
           </section>
         </FadeSection>
 
