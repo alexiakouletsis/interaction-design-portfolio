@@ -53,39 +53,39 @@ const WORKS_CITED = [
 const ATTRIBUTES = [
   {
     label: 'Audience',
-    value: `People who need an emotional reason to stay hydrated, like my grandpa, who forgets to drink water on his own, and people like myself who carry a bottle everywhere without thinking about why it matters`,
+    value: `People who need a strong pull to drink water, from my grandpa, who forgets on his own, to anyone who reaches for their phone before their water bottle`,
   },
   {
     label: 'Form',
-    value: `Stainless-steel cylinder with a hand-like palm indent, button-controlled lid, collapsible handle, and a screw-off bottom`,
+    value: `Stainless-steel cylinder with finger indents along the side, a screw-off bottom for inserting disks, and a built-in screen`,
   },
   {
     label: 'Material',
-    value: `Stainless steel body with sensor-embedded palm indent, a built-in screen, and a replaceable nutrient disk`,
+    value: `Stainless steel body with sensors embedded in the finger indents, a bitten nutrient disk, and a screen that displays a projected memory`,
   },
   {
     label: 'Appeal',
-    value: `Makes the user feel a memory tied to someone they're staying healthy for, rather than just showing a number`,
+    value: `Makes reaching for water as intuitive and compulsive as checking a phone`,
   },
   {
     label: 'Purpose',
-    value: `Reads hydration, vitamin, and iron levels on contact, then projects a memory and vibrates with its emotion while infusing the water with the needed supplement`,
+    value: `Finger indents read the user's nutrient and hydration levels and send a small vibration in response, while each bitten disk releases matching nutrients, mood-altering substances, and a pulled memory into the water once inserted`,
   },
   {
     label: 'Message',
-    value: `Staying hydrated means more than the present day, it means having the chance to make new memories and live long enough to relish them`,
+    value: `Raises the question of whether engineered addiction is an acceptable way to achieve health and longevity, or an unethical one`,
   },
   {
     label: 'Location',
-    value: `School bag, bedside, gym, or kitchen`,
+    value: `A bedside or a bag, encountered alone`,
   },
   {
     label: 'Usability',
-    value: `A screen built into the bottle instead of an app, so feedback stays accessible without a phone, with a gentle vibration pulse instead of an alarming buzz`,
+    value: `No ring is needed, since the finger-indent vibration and the dependency itself both function as the reminder to drink`,
   },
   {
     label: 'Technique',
-    value: `Cardboard for the main structure, Model Magic clay for the indent and disk, paper for details, with small lit photos behind a paper cutout to simulate the memory projection`,
+    value: `Model Magic clay for the bottle exterior and finger indents, cardboard for the disk, paint for the bite marks, and printed photos glued into a rectangular indent on the clay to act as the screen`,
   },
 ];
 
@@ -99,8 +99,8 @@ const PROTOTYPE_IMAGES = [
 ];
 
 const CONCEPT_STATEMENT_PARAGRAPHS = [
-  `The Owala water bottle I carry every day already means more to me than its function suggests, since I associate it with my own habits and the people I think about when I use it. But I am the one who brings that meaning to it every time I pick it up. I am redesigning this with my grandpa in mind, who forgets to drink water on his own, and there are days I wish I could just buzz him until he picked up a glass.`,
-  `The bottle is meant for private, everyday use, encountered alone at a bedside, in a school bag, at the gym, or in a kitchen, rather than in a crowded or public setting. A hand-like indent on the bottle's surface invites the user to rest their palm there, signaling where the sensors read hydration and nutrient levels, while the paired ring extends that same reminder throughout the day through an insistent buzz when the user is dehydrated. This object reflects a future where caring for someone far away, like a grandparent, does not have to rely on a phone call, but can be built directly into the objects we already use every day.`,
+  `I am redesigning the Owala water bottle around a moral question: is it acceptable to make hydration addictive if it gets people to drink more water? I am designing this with my grandpa in mind, who forgets to drink water on his own, but the bottle is built for anyone who reaches for their phone before their water bottle.`,
+  `Each disk is bitten before it is inserted into the bottom, pulling a memory that matches the mood the disk is meant to produce. For instance, a happy disk releases nutrients, electrolytes, caffeine, and dopamine alongside a positive memory. A sad disk carries depressant drugs instead, and a sleep disk carries CBD. Once inserted, the disk bleeds its contents into the water like ink, and the screen on the bottle shows the memory pulled from the bite. The bottle no longer needs a ring to remind the user to drink, since the dependency itself becomes the reminder, as intuitive as checking a phone. This object is meant to sit at a bedside or in a bag, and to provoke a conversation about whether engineered addiction can be a legitimate wellness tool or is an unethical way of achieving health and longevity.`,
 ];
 
 function BodyText({ children, italic = false }: { children: React.ReactNode; italic?: boolean }) {
