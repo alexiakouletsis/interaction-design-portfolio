@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 
 const PROJECTS = [
   { label: 'Project 0', href: '/projects/project-0', image: '/ambition.jpg' },
-  { label: 'Project 1', href: '/projects/project-1', image: '/project1-cover.png' },
+  { label: 'Project 1', href: '/projects/project-1', image: '/project1-cover.png', imagePosition: 'center 72%' },
   { label: 'Project 2', href: '/projects/project-2' },
 ];
 
@@ -143,7 +143,7 @@ export default function ProjectCarousel() {
                     backgroundColor: CARD_COLOR,
                     backgroundImage: project.image ? `url("${project.image}")` : undefined,
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center',
+                    backgroundPosition: project.imagePosition ?? 'center',
                     boxShadow: '0 35px 60px rgba(0, 0, 0, 0.35), 0 12px 20px rgba(0, 0, 0, 0.2)',
                     transform: isHovered ? `scale(${HOVER_SCALE})` : 'scale(1)',
                     transition: 'transform 0.3s ease',
