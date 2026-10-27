@@ -3,11 +3,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
-const TOTAL_SLIDES = 17;
-const SLIDES = Array.from({ length: TOTAL_SLIDES }, (_, i) => `/storyboard${i + 1}.png`);
 const ARROW_COLOR = '#314057';
 const IMAGE_BRIGHTNESS = 0.93; // used for both the inline carousel and the fullscreen view, so they always match
-const IMAGE_CONTRAST = 1.08; // boosts contrast so the pencil/ink lines read crisper, same in both views
+const IMAGE_CONTRAST = 1.15; // boosts contrast so the pencil/ink lines read crisper, same in both views
 
 function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
   return (
@@ -56,17 +54,25 @@ function ArrowButton({
   );
 }
 
-export default function StoryboardCarousel() {
+export default function StoryboardCarousel({
+  images,
+  applyFilter = true,
+}: {
+  images: string[];
+  applyFilter?: boolean;
+}) {
   const [index, setIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const totalSlides = images.length;
+  const imageFilter = applyFilter ? `brightness(${IMAGE_BRIGHTNESS}) contrast(${IMAGE_CONTRAST})` : 'none';
 
   const goPrev = useCallback(() => {
-    setIndex((i) => (i - 1 + TOTAL_SLIDES) % TOTAL_SLIDES);
-  }, []);
+    setIndex((i) => (i - 1 + totalSlides) % totalSlides);
+  }, [totalSlides]);
 
   const goNext = useCallback(() => {
-    setIndex((i) => (i + 1) % TOTAL_SLIDES);
-  }, []);
+    setIndex((i) => (i + 1) % totalSlides);
+  }, [totalSlides]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -77,7 +83,7 @@ export default function StoryboardCarousel() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [goPrev, goNext]);
 
-  const currentSrc = SLIDES[index];
+  const currentSrc = images[index];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -96,8 +102,8 @@ export default function StoryboardCarousel() {
           onClick={() => setIsFullscreen(true)}
           style={{
             position: 'relative',
-            width: '600px',
-            height: '600px',
+            width: '680px',
+            height: '480px',
             borderRadius: '24px',
             cursor: 'zoom-in',
             overflow: 'hidden',
@@ -115,7 +121,7 @@ export default function StoryboardCarousel() {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              filter: `brightness(${IMAGE_BRIGHTNESS}) contrast(${IMAGE_CONTRAST})`,
+              filter: imageFilter,
             }}
           />
         </div>
@@ -132,7 +138,7 @@ export default function StoryboardCarousel() {
           color: ARROW_COLOR,
         }}
       >
-        {index + 1} / {TOTAL_SLIDES}
+        {index + 1} / {totalSlides}
       </span>
 
       {isFullscreen &&
@@ -160,7 +166,7 @@ export default function StoryboardCarousel() {
                 width: 'auto',
                 height: 'auto',
                 objectFit: 'contain',
-                filter: `brightness(${IMAGE_BRIGHTNESS}) contrast(${IMAGE_CONTRAST})`,
+                filter: imageFilter,
               }}
             />
           </div>,

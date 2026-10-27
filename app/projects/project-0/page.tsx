@@ -1,7 +1,8 @@
 import FadeSection from '@/components/FadeSection';
 import WorkImage from '@/components/WorkImage';
-import WorkPDF from '@/components/WorkPDF';
 import BackHomeLink from '@/components/BackHomeLink';
+import BackToTopButton from '@/components/BackToTopButton';
+import HomeIconButton from '@/components/HomeIconButton';
 import SectionHeader, { TEXT_COLOR } from '@/components/SectionHeader';
 
 const REFLECTION_PARAGRAPHS = [
@@ -32,6 +33,8 @@ export default function Project0() {
         padding: '6rem 1.5rem 5rem',
       }}
     >
+      <HomeIconButton returnToProject={0} />
+
       {/* Title — full width, one line, always fully visible/static */}
       <h1
         style={{
@@ -52,7 +55,7 @@ export default function Project0() {
         <FadeSection>
           <section style={{ marginBottom: '6rem', textAlign: 'center' }}>
             <SectionHeader>Mind Map</SectionHeader>
-            <WorkPDF src="/5d-mind-map.pdf" alt="5D Mind Map" />
+            <WorkImage src="/5d-mind-map.png" alt="5D Mind Map" maxWidth="800px" maxHeight="85vh" />
           </section>
         </FadeSection>
 
@@ -88,7 +91,8 @@ export default function Project0() {
         </FadeSection>
 
         <FadeSection>
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', marginTop: '3rem' }}>
+            <BackToTopButton color={TEXT_COLOR} />
             <BackHomeLink color={TEXT_COLOR} returnToProject={0} />
           </div>
         </FadeSection>
