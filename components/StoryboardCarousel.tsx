@@ -157,18 +157,77 @@ export default function StoryboardCarousel({
               padding: '24px',
             }}
           >
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                goPrev();
+              }}
+              aria-label="Previous slide"
+              style={{
+                position: 'absolute',
+                left: '24px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '0.5rem',
+              }}
+            >
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style={{ display: 'block' }}>
+                <path d="M15 18l-6-6 6-6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
             <img
               src={currentSrc}
               alt={`Storyboard slide ${index + 1}`}
               style={{
-                maxWidth: '100%',
-                maxHeight: '100%',
+                maxWidth: '85%',
+                maxHeight: '90%',
                 width: 'auto',
                 height: 'auto',
                 objectFit: 'contain',
                 filter: imageFilter,
               }}
             />
+
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                goNext();
+              }}
+              aria-label="Next slide"
+              style={{
+                position: 'absolute',
+                right: '24px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: '0.5rem',
+              }}
+            >
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" style={{ display: 'block' }}>
+                <path d="M9 6l6 6-6 6" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            <span
+              style={{
+                position: 'absolute',
+                bottom: '24px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                color: '#fff',
+                fontFamily: '"lato", sans-serif',
+                fontWeight: 400,
+                fontSize: '0.9rem',
+              }}
+            >
+              {index + 1} / {totalSlides}
+            </span>
           </div>,
           document.body
         )}

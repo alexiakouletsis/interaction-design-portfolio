@@ -43,7 +43,7 @@ export default function TabbedContent({
           </button>
         ))}
       </div>
-      {tabs[active].content}
+      <div key={active}>{tabs[active].content}</div>
     </div>
   );
 }
